@@ -32,14 +32,7 @@ respectively.
 
 # Installation
 
-## Using pip
-
-The easiest way to install this library is using `pip`:
-```shell
-sudo pip install Jetson.GPIO
-```
-
-## Manual download 
+## Manual Download 
 
 You may clone this git repository, or download a copy of it as an archive file
 and decompress it. You may place the library files anywhere you like on your
