@@ -282,6 +282,8 @@ ids_warned = False
 
 
 def get_data():
+    
+    ''' # no need for this information check
     compatible_path = '/proc/device-tree/compatible'
     ids_path = '/proc/device-tree/chosen/plugin-manager/ids'
 
@@ -345,7 +347,9 @@ WARNING: and in fact is unlikely to work correctly.
         warn_if_not_carrier_board('3509', '3449')
     else:
         raise Exception('Could not determine Jetson model')
-
+    '''
+    
+    model = JETSON_NANO
     pin_defs, jetson_info = jetson_gpio_data[model]
     gpio_chip_base = {}
     pwm_dirs = {}
