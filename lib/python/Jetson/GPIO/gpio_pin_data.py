@@ -430,8 +430,6 @@ ids_warned = False
 
 
 def get_data():
-    
-    ''' # no need for this information check
     compatible_path = '/proc/device-tree/compatible'
     ids_path = '/proc/device-tree/chosen/plugin-manager/ids'
     ids_path_k510 = '/proc/device-tree/chosen/ids'
