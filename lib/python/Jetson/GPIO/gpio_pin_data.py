@@ -109,38 +109,22 @@ compats_clara_agx_xavier = (
 )
 
 JETSON_NX_PIN_DEFS = [
-    # AUGI GEN 3: Overwrote AUD_MCLK
-    ({224: 148, 169: 118}, {169:  'PS.04'}, "2200000.gpio", 7, 4, 'GPIO09', 'N_INT1', None, None),
-    ({224: 140, 169: 112}, {169:  'PR.04'}, "2200000.gpio", 11, 17, 'UART1_RTS', 'UART1_RTS', None, None),
-    ({224: 157, 169: 127}, {169:  'PT.05'}, "2200000.gpio", 12, 18, 'I2S0_SCLK', 'DAP5_SCLK', None, None),
-    ({224: 192, 169: 149}, {169:  'PY.00'}, "2200000.gpio", 13, 27, 'SPI1_SCK', 'SPI3_SCK', None, None),
+    # AUGI GEN 3: Overwrote SOC_GPIO44
+    ({224: 136, 169: 108}, {169: 'PR.00'}, "2200000.gpio", 32, 12, 'GPIO07', 'RADAR_RST', None, None),
     # AUGI GEN 3: ADDED - 3 less than PCC.04, Not PWM (per schematic)
-    ({ 40:  17,  30:  13}, { 30: 'PCC.01'}, "c2f0000.gpio", None, None, 'GPIO04', 'N_BLE_RST', None, None),
-    # AUGI GEN 3: ADDED - 1 less than PCC.04, Not PWM (per schematic)
-    ({ 40:  19,  30:  15}, { 30: 'PCC.03'}, "c2f0000.gpio", None, None, 'GPIO06', 'SPEAKER_EN', None, None),
-    # AUGI GEN 3: Overwrote TOUCH_CLK
-    ({ 40:  20,  30:  16}, { 30: 'PCC.04'}, "c2f0000.gpio", 15, 22, 'GPIO12', 'N_INT2', "c340000.pwm", 0),
+    ({ 40:  17,  30:  13}, {30: 'PCC.01'}, "c2f0000.gpio", None, None, 'GPIO04', 'BLE_RST', None, None),
+    # AUGI GEN 3: Overwrote SOC_GPIO42
+    ({224: 134, 169: 106}, {169:  'PQ.06'}, "2200000.gpio", 31, 6, 'GPIO11', 'BLE_BOOT', None, None),
     # AUGI GEN 3: Overwrote SPI3_CS1_N
     ({224: 196, 169: 153}, {169:  'PY.04'}, "2200000.gpio", 16, 23, 'SPI1_CS1', 'CAM0_FILTER', None, None),
-    ({224: 195, 169: 152}, {169:  'PY.03'}, "2200000.gpio", 18, 24, 'SPI1_CS0', 'SPI3_CS0_N', None, None),
-    ({224: 205, 169: 162}, {169:  'PZ.05'}, "2200000.gpio", 19, 10, 'SPI0_MOSI', 'SPI1_MOSI', None, None),
-    ({224: 204, 169: 161}, {169:  'PZ.04'}, "2200000.gpio", 21, 9, 'SPI0_MISO', 'SPI1_MISO', None, None),
-    ({224: 193, 169: 150}, {169:  'PY.01'}, "2200000.gpio", 22, 25, 'SPI1_MISO', 'SPI3_MISO', None, None),
-    ({224: 203, 169: 160}, {169:  'PZ.03'}, "2200000.gpio", 23, 11, 'SPI0_SCK', 'SPI1_SCK', None, None),
-    ({224: 206, 169: 163}, {169:  'PZ.06'}, "2200000.gpio", 24, 8, 'SPI0_CS0', 'SPI1_CS0_N', None, None),
-    ({224: 207, 169: 164}, {169:  'PZ.07'}, "2200000.gpio", 26, 7, 'SPI0_CS1', 'SPI1_CS1_N', None, None),
-    ({224: 133, 169: 105}, {169:  'PQ.05'}, "2200000.gpio", 29, 5, 'GPIO01', 'SOC_GPIO41', None, None),
-    # AUGI GEN 3: Overwrote SOC_GPIO42
-    ({224: 134, 169: 106}, {169:  'PQ.06'}, "2200000.gpio", 31, 6, 'GPIO11', 'N_BLE_BOOT', None, None),
-    # AUGI GEN 3: Overwrote SOC_GPIO44
-    ({224: 136, 169: 108}, {169:  'PR.00'}, "2200000.gpio", 32, 12, 'GPIO07', 'N_RADAR_RST', '32f0000.pwm', 0),
+    # AUGI GEN 3: ADDED - 1 less than PCC.04, Not PWM (per schematic)
+    ({ 40:  19,  30:  15}, {30: 'PCC.03'}, "c2f0000.gpio", None, None, 'GPIO06', 'SPEAKER_EN', None, None),
+    # AUGI GEN 3: Overwrote AUD_MCLK
+    ({224: 148, 169: 118}, {169:  'PS.04'}, "2200000.gpio", 7, 4, 'GPIO09', 'INT1', None, None),
+    # AUGI GEN 3: Overwrote TOUCH_CLK
+    ({ 40:  20,  30:  16}, {30: 'PCC.04'}, "c2f0000.gpio", 15, 22, 'GPIO12', 'INT2', None, None),
     # AUGI GEN 3: Overwrote SOC_GPIO54
-    ({224: 105, 169:  84}, {169:  'PN.01'}, "2200000.gpio", 33, 13, 'GPIO13', 'N_INT3', '3280000.pwm', 0),
-    ({224: 160, 169: 130}, {169:  'PU.00'}, "2200000.gpio", 35, 19, 'I2S0_FS', 'DAP5_FS', None, None),
-    ({224: 141, 169: 113}, {169:  'PR.05'}, "2200000.gpio", 36, 16, 'UART1_CTS', 'UART1_CTS', None, None),
-    ({224: 194, 169: 151}, {169:  'PY.02'}, "2200000.gpio", 37, 26, 'SPI1_MOSI', 'SPI3_MOSI', None, None),
-    ({224: 159, 169: 129}, {169:  'PT.07'}, "2200000.gpio", 38, 20, 'I2S0_DIN', 'DAP5_DIN', None, None),
-    ({224: 158, 169: 128}, {169:  'PT.06'}, "2200000.gpio", 40, 21, 'I2S0_DOUT', 'DAP5_DOUT', None, None)
+    ({224: 105, 169:  84}, {169:  'PN.01'}, "2200000.gpio", 33, 13, 'GPIO13', 'INT3', None, None),
 ]
 compats_nx = (
     'nvidia,p3509-0000+p3668-0000',
