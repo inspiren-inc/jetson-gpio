@@ -132,10 +132,9 @@ compats_nx = (
     'nvidia,p3449-0000+p3668-0000',
     'nvidia,p3449-0000+p3668-0001',
     'nvidia,p3449-0000+p3668-0003',
-    'INSPIREN,IN4A012+p3668-0000',
-    'INSPIREN,IN4A012+p3668-0001',
-    'INSPIREN,IN4A012+p3668-0003',
-    'INSPIREN,IN4A012',
+    'inspiren,in4a012+p3668-0000',
+    'inspiren,in4a012+p3668-0001',
+    'inspiren,in4a012+p3668-0003',
 )
 
 JETSON_XAVIER_PIN_DEFS = [
