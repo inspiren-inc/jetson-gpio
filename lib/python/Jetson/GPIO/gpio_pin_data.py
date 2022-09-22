@@ -21,6 +21,7 @@ import os
 import os.path
 import sys
 
+JETSON_AUGI3_NANO = 'JETSON_AUGI3_NANO'
 CLARA_AGX_XAVIER = 'CLARA_AGX_XAVIER'
 JETSON_NX = 'JETSON_NX'
 JETSON_XAVIER = 'JETSON_XAVIER'
@@ -306,6 +307,21 @@ compats_nano = (
     'INSPIREN,IN4B006',
 )
 
+JETSON_AUGI3_NANO_PIN_DEFS = [
+    (168, {}, "6000d000.gpio", 32, 12, 'GPIO07', 'RADAR_RST', None, None),
+    (65, {}, "6000d000.gpio", None, None, 'GPIO04', 'BLE_RST', None, None)
+    (200, {}, "6000d000.gpio", 31, 6, 'GPIO11', 'BLE_BOOT', None, None),
+    (232, {}, "6000d000.gpio", 16, 23, 'SPI1_CS1', 'CAM0_FILTER', None, None),
+    (64, {}, "6000d000.gpio", None, None, 'GPIO06', 'SPEAKER_EN', None, None),
+    (216, {}, "6000d000.gpio", 7, 4, 'GPIO9', 'INT1', None, None),
+    (194, {}, "6000d000.gpio", 15, 22, 'GPIO12', 'INT2', None, None),
+    (38, {}, "6000d000.gpio", 33, 13, 'GPIO13', 'INT3', None, None),
+]
+
+compats_augi3_nano = (
+    'inspiren,in4a012+p3448-0002-b00'
+)
+
 jetson_gpio_data = {
     JETSON_ORIN: (
         JETSON_ORIN_PIN_DEFS,
@@ -395,6 +411,17 @@ jetson_gpio_data = {
             'PROCESSOR': 'ARM A57'
         }
     ),
+    JETSON_AUGI3_NANO: (
+        JETSON_AUGI3_NANO_PIN_DEFS,
+        {
+            'P1_REVISION': 1,
+            'RAM': '4096M, 2048M',
+            'REVISION': 'Unknown',
+            'TYPE': 'Jetson Nano',
+            'MANUFACTURER': 'NVIDIA',
+            'PROCESSOR': 'ARM A57'
+        }
+    )
 }
 
 
@@ -463,7 +490,9 @@ WARNING: and in fact is unlikely to work correctly.
 """
             sys.stderr.write(msg)
 
-    if matches(compats_tx1):
+    if matches(compats_augi3_nano):
+        model = JETSON_AUGI3_NANO
+    elif matches(compats_tx1):
         model = JETSON_TX1
         warn_if_not_carrier_board('2597')
     elif matches(compats_tx2):
