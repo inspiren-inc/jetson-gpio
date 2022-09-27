@@ -309,7 +309,7 @@ compats_nano = (
 
 JETSON_AUGI3_NANO_PIN_DEFS = [
     (168, {}, "6000d000.gpio", 32, 12, 'GPIO07', 'RADAR_RST', None, None),
-    (65, {}, "6000d000.gpio", None, None, 'GPIO04', 'BLE_RST', None, None)
+    (65, {}, "6000d000.gpio", None, None, 'GPIO04', 'BLE_RST', None, None),
     (200, {}, "6000d000.gpio", 31, 6, 'GPIO11', 'BLE_BOOT', None, None),
     (232, {}, "6000d000.gpio", 16, 23, 'SPI1_CS1', 'CAM0_FILTER', None, None),
     (64, {}, "6000d000.gpio", None, None, 'GPIO06', 'SPEAKER_EN', None, None),
