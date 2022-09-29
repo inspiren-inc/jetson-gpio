@@ -319,7 +319,7 @@ JETSON_AUGI3_NANO_PIN_DEFS = [
 ]
 
 compats_augi3_nano = (
-    'inspiren,in4a012+p3448-0002-b00'
+    'inspiren,in4a012+p3448-0002-b00',
 )
 
 jetson_gpio_data = {
