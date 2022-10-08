@@ -21,6 +21,7 @@ import os
 import os.path
 import sys
 
+JETSON_AUGI3_NANO = 'JETSON_AUGI3_NANO'
 CLARA_AGX_XAVIER = 'CLARA_AGX_XAVIER'
 JETSON_NX = 'JETSON_NX'
 JETSON_XAVIER = 'JETSON_XAVIER'
@@ -109,28 +110,22 @@ compats_clara_agx_xavier = (
 )
 
 JETSON_NX_PIN_DEFS = [
-    ({224: 148, 169: 118}, {169:  'PS.04'}, "2200000.gpio", 7, 4, 'GPIO09', 'AUD_MCLK', None, None),
-    ({224: 140, 169: 112}, {169:  'PR.04'}, "2200000.gpio", 11, 17, 'UART1_RTS', 'UART1_RTS', None, None),
-    ({224: 157, 169: 127}, {169:  'PT.05'}, "2200000.gpio", 12, 18, 'I2S0_SCLK', 'DAP5_SCLK', None, None),
-    ({224: 192, 169: 149}, {169:  'PY.00'}, "2200000.gpio", 13, 27, 'SPI1_SCK', 'SPI3_SCK', None, None),
-    ({ 40:  20,  30:  16}, { 30: 'PCC.04'}, "c2f0000.gpio", 15, 22, 'GPIO12', 'TOUCH_CLK', "c340000.pwm", 0),
-    ({224: 196, 169: 153}, {169:  'PY.04'}, "2200000.gpio", 16, 23, 'SPI1_CS1', 'SPI3_CS1_N', None, None),
-    ({224: 195, 169: 152}, {169:  'PY.03'}, "2200000.gpio", 18, 24, 'SPI1_CS0', 'SPI3_CS0_N', None, None),
-    ({224: 205, 169: 162}, {169:  'PZ.05'}, "2200000.gpio", 19, 10, 'SPI0_MOSI', 'SPI1_MOSI', None, None),
-    ({224: 204, 169: 161}, {169:  'PZ.04'}, "2200000.gpio", 21, 9, 'SPI0_MISO', 'SPI1_MISO', None, None),
-    ({224: 193, 169: 150}, {169:  'PY.01'}, "2200000.gpio", 22, 25, 'SPI1_MISO', 'SPI3_MISO', None, None),
-    ({224: 203, 169: 160}, {169:  'PZ.03'}, "2200000.gpio", 23, 11, 'SPI0_SCK', 'SPI1_SCK', None, None),
-    ({224: 206, 169: 163}, {169:  'PZ.06'}, "2200000.gpio", 24, 8, 'SPI0_CS0', 'SPI1_CS0_N', None, None),
-    ({224: 207, 169: 164}, {169:  'PZ.07'}, "2200000.gpio", 26, 7, 'SPI0_CS1', 'SPI1_CS1_N', None, None),
-    ({224: 133, 169: 105}, {169:  'PQ.05'}, "2200000.gpio", 29, 5, 'GPIO01', 'SOC_GPIO41', None, None),
-    ({224: 134, 169: 106}, {169:  'PQ.06'}, "2200000.gpio", 31, 6, 'GPIO11', 'SOC_GPIO42', None, None),
-    ({224: 136, 169: 108}, {169:  'PR.00'}, "2200000.gpio", 32, 12, 'GPIO07', 'SOC_GPIO44', '32f0000.pwm', 0),
-    ({224: 105, 169:  84}, {169:  'PN.01'}, "2200000.gpio", 33, 13, 'GPIO13', 'SOC_GPIO54', '3280000.pwm', 0),
-    ({224: 160, 169: 130}, {169:  'PU.00'}, "2200000.gpio", 35, 19, 'I2S0_FS', 'DAP5_FS', None, None),
-    ({224: 141, 169: 113}, {169:  'PR.05'}, "2200000.gpio", 36, 16, 'UART1_CTS', 'UART1_CTS', None, None),
-    ({224: 194, 169: 151}, {169:  'PY.02'}, "2200000.gpio", 37, 26, 'SPI1_MOSI', 'SPI3_MOSI', None, None),
-    ({224: 159, 169: 129}, {169:  'PT.07'}, "2200000.gpio", 38, 20, 'I2S0_DIN', 'DAP5_DIN', None, None),
-    ({224: 158, 169: 128}, {169:  'PT.06'}, "2200000.gpio", 40, 21, 'I2S0_DOUT', 'DAP5_DOUT', None, None)
+    # AUGI GEN 3: Overwrote SOC_GPIO44
+    ({224: 136, 169: 108}, {169: 'PR.00'}, "2200000.gpio", 32, 12, 'GPIO07', 'RADAR_RST', None, None),
+    # AUGI GEN 3: ADDED - 3 less than PCC.04, Not PWM (per schematic)
+    ({ 40:  17,  30:  13}, {30: 'PCC.01'}, "c2f0000.gpio", None, None, 'GPIO04', 'BLE_RST', None, None),
+    # AUGI GEN 3: Overwrote SOC_GPIO42
+    ({224: 134, 169: 106}, {169:  'PQ.06'}, "2200000.gpio", 31, 6, 'GPIO11', 'BLE_BOOT', None, None),
+    # AUGI GEN 3: Overwrote SPI3_CS1_N
+    ({224: 196, 169: 153}, {169:  'PY.04'}, "2200000.gpio", 16, 23, 'SPI1_CS1', 'CAM0_FILTER', None, None),
+    # AUGI GEN 3: ADDED - 1 less than PCC.04, Not PWM (per schematic)
+    ({ 40:  19,  30:  15}, {30: 'PCC.03'}, "c2f0000.gpio", None, None, 'GPIO06', 'SPEAKER_EN', None, None),
+    # AUGI GEN 3: Overwrote AUD_MCLK
+    ({224: 148, 169: 118}, {169:  'PS.04'}, "2200000.gpio", 7, 4, 'GPIO09', 'INT1', None, None),
+    # AUGI GEN 3: Overwrote TOUCH_CLK
+    ({ 40:  20,  30:  16}, {30: 'PCC.04'}, "c2f0000.gpio", 15, 22, 'GPIO12', 'INT2', None, None),
+    # AUGI GEN 3: Overwrote SOC_GPIO54
+    ({224: 105, 169:  84}, {169:  'PN.01'}, "2200000.gpio", 33, 13, 'GPIO13', 'INT3', None, None),
 ]
 compats_nx = (
     'nvidia,p3509-0000+p3668-0000',
@@ -138,6 +133,9 @@ compats_nx = (
     'nvidia,p3449-0000+p3668-0000',
     'nvidia,p3449-0000+p3668-0001',
     'nvidia,p3449-0000+p3668-0003',
+    'inspiren,in4a012+p3668-0000',
+    'inspiren,in4a012+p3668-0001',
+    'inspiren,in4a012+p3668-0003',
 )
 
 JETSON_XAVIER_PIN_DEFS = [
@@ -309,6 +307,21 @@ compats_nano = (
     'INSPIREN,IN4B006',
 )
 
+JETSON_AUGI3_NANO_PIN_DEFS = [
+    (168, {}, "6000d000.gpio", 32, 12, 'GPIO07', 'RADAR_RST', None, None),
+    (65, {}, "6000d000.gpio", None, None, 'GPIO04', 'BLE_RST', None, None),
+    (200, {}, "6000d000.gpio", 31, 6, 'GPIO11', 'BLE_BOOT', None, None),
+    (232, {}, "6000d000.gpio", 16, 23, 'SPI1_CS1', 'CAM0_FILTER', None, None),
+    (64, {}, "6000d000.gpio", None, None, 'GPIO06', 'SPEAKER_EN', None, None),
+    (216, {}, "6000d000.gpio", 7, 4, 'GPIO9', 'INT1', None, None),
+    (194, {}, "6000d000.gpio", 15, 22, 'GPIO12', 'INT2', None, None),
+    (38, {}, "6000d000.gpio", 33, 13, 'GPIO13', 'INT3', None, None),
+]
+
+compats_augi3_nano = (
+    'inspiren,in4a012+p3448-0002-b00',
+)
+
 jetson_gpio_data = {
     JETSON_ORIN: (
         JETSON_ORIN_PIN_DEFS,
@@ -398,6 +411,17 @@ jetson_gpio_data = {
             'PROCESSOR': 'ARM A57'
         }
     ),
+    JETSON_AUGI3_NANO: (
+        JETSON_AUGI3_NANO_PIN_DEFS,
+        {
+            'P1_REVISION': 1,
+            'RAM': '4096M, 2048M',
+            'REVISION': 'Unknown',
+            'TYPE': 'Jetson Nano',
+            'MANUFACTURER': 'NVIDIA',
+            'PROCESSOR': 'ARM A57'
+        }
+    )
 }
 
 
@@ -416,8 +440,6 @@ ids_warned = False
 
 
 def get_data():
-    
-    ''' # no need for this information check
     compatible_path = '/proc/device-tree/compatible'
     ids_path = '/proc/device-tree/chosen/plugin-manager/ids'
     ids_path_k510 = '/proc/device-tree/chosen/ids'
@@ -468,7 +490,9 @@ WARNING: and in fact is unlikely to work correctly.
 """
             sys.stderr.write(msg)
 
-    if matches(compats_tx1):
+    if matches(compats_augi3_nano):
+        model = JETSON_AUGI3_NANO
+    elif matches(compats_tx1):
         model = JETSON_TX1
         warn_if_not_carrier_board('2597')
     elif matches(compats_tx2):
